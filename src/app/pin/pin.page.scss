@@ -1,0 +1,20 @@
+.app-pin {
+    .pin-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+
+        .btn {
+            --background: white;
+            --border-color: #b80202;
+            --border-radius: 50%;
+            --border-style: solid;
+            --border-width: 2px;
+            --color: black;
+            --color-activated: black;
+            --color-focused: black;
+            --ripple-color: transparent;
+        }
+    }
+}

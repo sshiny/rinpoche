@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center class="app-pin">
+  <ion-grid class="pin-container">
+    <div>
+      <ion-row>
+        <ion-col>
+          <ng-template ngFor let-item [ngForOf]="[0, 1, 2, 3]">
+            <ion-icon [name]="(this.code.length > item) ? 'radio-button-on' : 'radio-button-off'" color="primary"></ion-icon>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+
+      <div class="ion-margin">
+        <ion-row>
+          <ion-col *ngFor="let item of [1, 2, 3];">
+            <ion-button class="btn" size="large" (click)="handleBtnClick(item);">{{ item }}</ion-button>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col *ngFor="let item of [4, 5, 6];">
+            <ion-button class="btn" size="large" (click)="handleBtnClick(item);">{{ item }}</ion-button>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col *ngFor="let item of [7, 8, 9];">
+            <ion-button class="btn" size="large" (click)="handleBtnClick(item);">{{ item }}</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col ion-align-self-center>
+            <ion-button class="btn" size="large" (click)="handleBtnClick(0);">0</ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <ion-row>
+      <ion-col ion-align-self-start>
+        <ion-button #erase color="medium" (click)="handleEraseClick();" disabled="true">Effacer</ion-button>
+      </ion-col>
+      <ion-col ion-align-self-end>
+        <ion-button color="primary" (click)="handleValidateClick();">Valider</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
