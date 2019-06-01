@@ -39,27 +39,41 @@ export class PinPage {
 
   private handleValidateClick = () => {
     if (this.code.length === 4) {
-      console.log(this.code);
-      console.log(PinPage.PIN);
       if (this.checkPIN()) {
-        console.log("valid");
         if (window.sessionStorage) {
           sessionStorage.setItem("connected", "true");
           window.location.href = "home";
+        } else {
+          this.showAlert("Une erreur est survenue...");
         }
-      } else {
-        console.log("invalid");
-        this.showAlert();
+        return;
       }
+    }
+    this.showAlert("Le code PIN saisi est incorrect...");
+  };
+
+  private disconnect = () => {
+    if (window.sessionStorage && sessionStorage.connected) {
+      sessionStorage.removeItem("connected");
     }
   };
 
-  private async showAlert() {
+  private showAlert = async (str: string) => {
     const alert = await this.alertController.create({
-      header: "",
-      subHeader: "",
-      message: "",
-      buttons: ['OK']
+      header: "Erreur",
+      message: str,
+      cssClass: "ion-text-center",
+      buttons: [
+        {
+          text: "Fermer",
+          role: "cancel",
+          cssClass: "ion-text-center",
+          handler: () => {
+            this.code = new Array();
+            this.erase.disabled = true;
+          }
+        }
+      ]
     });
 
     await alert.present();
@@ -69,6 +83,7 @@ export class PinPage {
   erase : any;
 
   constructor(public alertController: AlertController) {
+    this.disconnect();
     this.code = new Array();
     this.pageTitle = "Saisie du code";
   }

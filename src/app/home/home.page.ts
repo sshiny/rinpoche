@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,9 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(public plt: Platform) {
-    this.plt.ready().then(() => {
-      let isConnected = sessionStorage.connected;
-      if (!isConnected || !JSON.parse(isConnected)) {
-        window.location.href = "pin";
-      }
-    });
+
+  constructor(public plt: Platform, public utils: UtilsService) {
+    this.utils.redirectToPinPage(plt);
   }
+  
 }

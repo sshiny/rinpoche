@@ -15,7 +15,8 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'pin', loadChildren: './pin/pin.module#PinPageModule' }
+  { path: 'pin', loadChildren: './pin/pin.module#PinPageModule' },
+  { path: 'retirements', loadChildren: './retirements/retirements.module#RetirementsPageModule' }
 ];
 
 @NgModule({
