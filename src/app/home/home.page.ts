@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { UtilsService } from '../utils.service';
 
@@ -7,10 +7,12 @@ import { UtilsService } from '../utils.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor(public plt: Platform, public utils: UtilsService) {
-    this.utils.redirectToPinPage(plt);
-  }
+  constructor(public plt: Platform, public utils: UtilsService) { }
   
+  ngOnInit() {
+    this.utils.redirectToPinPage(this.plt);
+  }
+
 }

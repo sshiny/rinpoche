@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -6,11 +6,11 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './pin.page.html',
   styleUrls: ['./pin.page.scss'],
 })
-export class PinPage {
+export class PinPage implements OnInit {
 
   private static readonly PIN = new Array<number>(0, 0, 0, 0);
-  private code : Array<number>;
-  private pageTitle : string;
+  private code: Array<number>;
+  private pageTitle: string;
 
   private checkPIN = () => {
     for (let i = 0; i < PinPage.PIN.length; i++) {
@@ -21,14 +21,14 @@ export class PinPage {
     return true;
   };
 
-  private handleEraseClick = (e : Event) => {
+  private handleEraseClick = (e: Event) => {
     this.code.pop();
     if (this.code.length === 0) {
       this.erase.disabled = true;
     }
   };
 
-  private handleBtnClick = (id : number) => {
+  private handleBtnClick = (id: number) => {
     if (this.code.length < 4) {
       this.code.push(id);
       if (this.code.length === 1) {
@@ -80,12 +80,15 @@ export class PinPage {
   }
 
   @ViewChild("erase")
-  erase : any;
+  erase: any;
 
   constructor(public alertController: AlertController) {
-    this.disconnect();
     this.code = new Array();
     this.pageTitle = "Saisie du code";
+  }
+
+  ngOnInit() {
+    this.disconnect();
   }
 
 }
