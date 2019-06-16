@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Utilisateurs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let usr of users;">
+    <ion-item>
+      <ion-card-header>
+        <ion-card-title>{{usr.name}}</ion-card-title>
+        <ion-card-subtitle>{{usr.email}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button (click)="login(usr.email);" fill="outline" slot="end">Sélectionner</ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

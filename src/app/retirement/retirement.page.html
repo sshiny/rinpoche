@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="ret">Retraite : {{ ret.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="ret">{{ ret.first_day }} - {{ ret.last_day }}</ion-card-subtitle>
+      <ion-card-title *ngIf="ret">{{ ret.name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="ret">
+      {{ ret.description }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-searchbar placeholder="Rechercher"></ion-searchbar>
+        </ion-card-subtitle>
+        <ion-card-title>Liste des participants</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+          <div *ngIf="ret && ret.subscriptions; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>            
+            <ion-card *ngFor="let sub of ret.subscriptions;">
+              <ion-item>
+                <ion-card-header>
+                  <ion-card-title>{{sub.first_name}} {{sub.last_name}}</ion-card-title>
+                  <ion-card-subtitle>{{sub.address}}, {{sub.city}}, {{sub.country}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-button routerLink="{{sub.id}}" routerDirection="forward"  fill="outline" slot="end">
+                  >
+                </ion-button>
+              </ion-item>
+            </ion-card>
+          </ng-template>
+          <ng-template #elseBlock>Il n'y a pas de partipants à cette retraite...</ng-template>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

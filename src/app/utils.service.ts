@@ -12,7 +12,7 @@ export class UtilsService {
     platform.ready().then(() => {
       let isConnected = sessionStorage.connected;
       if (!isConnected || !JSON.parse(isConnected)) {
-        window.location.href = "pin";
+        window.location.href = "users";
       }
     });
   }

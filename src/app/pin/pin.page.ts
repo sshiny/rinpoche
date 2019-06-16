@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { APIService } from '../api.service';
 
 @Component({
   selector: 'app-pin',
@@ -8,17 +9,20 @@ import { AlertController } from '@ionic/angular';
 })
 export class PinPage implements OnInit {
 
-  private static readonly PIN = new Array<number>(0, 0, 0, 0);
   private code: Array<number>;
   private pageTitle: string;
 
-  private checkPIN = () => {
-    for (let i = 0; i < PinPage.PIN.length; i++) {
-      if (this.code[i] !== PinPage.PIN[i]) {
-        return false;
+  private checkPIN = async () => {
+    try {
+      const res = await this.api.login(sessionStorage.email, this.code.join('')).toPromise();
+      if (res.ok) {
+        sessionStorage.setItem("token", res.body['api_token']);
+        return Promise.resolve();
       }
+      return Promise.reject();
+    } catch (e) {
+      return Promise.reject();
     }
-    return true;
   };
 
   private handleEraseClick = (e: Event) => {
@@ -38,18 +42,14 @@ export class PinPage implements OnInit {
   };
 
   private handleValidateClick = () => {
-    if (this.code.length === 4) {
-      if (this.checkPIN()) {
-        if (window.sessionStorage) {
-          sessionStorage.setItem("connected", "true");
-          window.location.href = "home";
-        } else {
-          this.showAlert("Une erreur est survenue...");
-        }
-        return;
-      }
-    }
-    this.showAlert("Le code PIN saisi est incorrect...");
+    this.checkPIN()
+      .then(() => {
+        sessionStorage.setItem("connected", "true");
+        window.location.href = "home";
+      })
+      .catch(() => {
+        this.showAlert("Le code PIN saisi est incorrect...");
+      });
   };
 
   private disconnect = () => {
@@ -82,7 +82,7 @@ export class PinPage implements OnInit {
   @ViewChild("erase")
   erase: any;
 
-  constructor(public alertController: AlertController) {
+  constructor(public alertController: AlertController, public api: APIService) {
     this.code = new Array();
     this.pageTitle = "Saisie du code";
   }

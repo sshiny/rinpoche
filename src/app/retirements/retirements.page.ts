@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { UtilsService } from '../utils.service';
+import { APIService } from '../api.service';
 
 @Component({
   selector: 'app-retirements',
@@ -11,16 +12,19 @@ export class RetirementsPage implements OnInit {
 
   private retirements: Array<Object>;
 
-  constructor(public plt: Platform, public utils: UtilsService) {
-    this.retirements = new Array(
-      {id: 1, name: "test", desc: "Coucou", firstDay: "06-06-2019", lastDay: "07-07-2019"},
-      {id: 2, name: "test2", desc: "Coucou", firstDay: "06-06-2019", lastDay: "07-07-2019"},
-      {id: 3, name: "test", desc: "Coucou", firstDay: "06-06-2019", lastDay: "07-07-2019"}
-    );
+  constructor(public plt: Platform, public utils: UtilsService, public api: APIService) {
+    this.retirements = new Array();
   }
 
   ngOnInit() {
     this.utils.redirectToPinPage(this.plt);
+    this.api.retreats(sessionStorage.token).subscribe((data) => {
+      if (Array.isArray(data.body)) {
+        data.body.forEach((val) => {
+          this.retirements.push(val);
+        })
+      }
+    });
   }
 
 }

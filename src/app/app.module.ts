@@ -10,19 +10,24 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UtilsService } from './utils.service';
 
+import { HttpClientModule } from '@angular/common/http';
+import { APIService } from './api.service';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    UtilsService
+    UtilsService,
+    APIService
   ],
   bootstrap: [AppComponent]
 })
