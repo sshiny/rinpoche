@@ -61,8 +61,8 @@ export class APIService {
     });
   }
 
-  identity(token: string, id: string) {
-    return this.http.get(APIService.API_END_POINT + "identities/" + id, {
+  subscription(token: string, id: string) {
+    return this.http.get(APIService.API_END_POINT + "subscriptions/" + id, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
