@@ -17,8 +17,8 @@ export class RetirementPage implements OnInit {
 
   ngOnInit() {
     this.utils.redirectToPinPage(this.plt);
-    let id = this.activatedRoute.snapshot.paramMap.get('id');;
-    this.api.retreat(sessionStorage.token, id).subscribe((data) => {
+    let ret = this.activatedRoute.snapshot.paramMap.get('ret');
+    this.api.retreat(sessionStorage.token, ret).subscribe((data) => {
       console.log(data.body);
       this.ret = data.body;
     });

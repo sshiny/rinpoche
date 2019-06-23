@@ -14,6 +14,9 @@ export class UsersPage implements OnInit {
   }
 
   ngOnInit() {
+    if (window.sessionStorage && sessionStorage.token) {
+      sessionStorage.removeItem("token");
+    }
     this.api.users().subscribe((data) => {
       if (Array.isArray(data.body)) {
         data.body.forEach((val) => {

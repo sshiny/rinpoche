@@ -50,8 +50,8 @@ export class APIService {
     });
   }
 
-  retreat(token: string, id: string) {
-    return this.http.get(APIService.API_END_POINT + "retreats/" + id, {
+  retreat(token: string, ret: string) {
+    return this.http.get(APIService.API_END_POINT + "retreats/" + ret, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -61,8 +61,11 @@ export class APIService {
     });
   }
 
-  subscription(token: string, id: string) {
-    return this.http.get(APIService.API_END_POINT + "subscriptions/" + id, {
+  subscription(token: string, ret: string, id: string) {
+    return this.http.post(APIService.API_END_POINT + "subscription", JSON.stringify({
+      retreat_id: ret,
+      identity_id: id
+    }), {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

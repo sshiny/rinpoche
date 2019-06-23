@@ -52,12 +52,6 @@ export class PinPage implements OnInit {
       });
   };
 
-  private disconnect = () => {
-    if (window.sessionStorage && sessionStorage.connected) {
-      sessionStorage.removeItem("connected");
-    }
-  };
-
   private showAlert = async (str: string) => {
     const alert = await this.alertController.create({
       header: "Erreur",
@@ -88,7 +82,9 @@ export class PinPage implements OnInit {
   }
 
   ngOnInit() {
-    this.disconnect();
+    if (window.sessionStorage && sessionStorage.token) {
+      sessionStorage.removeItem("token");
+    }
   }
 
 }

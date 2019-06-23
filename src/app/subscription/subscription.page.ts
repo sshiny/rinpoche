@@ -17,8 +17,9 @@ export class SubscriptionPage implements OnInit {
 
   ngOnInit() {
     this.utils.redirectToPinPage(this.plt);
-    let id = this.activatedRoute.snapshot.paramMap.get('subscription');;
-    this.api.subscription(sessionStorage.token, id).subscribe((data) => {
+    let ret = this.activatedRoute.snapshot.paramMap.get('ret');
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.api.subscription(sessionStorage.token, ret, id).subscribe((data) => {
       console.log(data.body);
       this.sub = data.body;
     });

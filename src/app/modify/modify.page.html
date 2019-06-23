@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Participation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-card-header>
+        <ion-card-title *ngIf="sub && sub.identity">Participation de {{sub.identity.first_name}} {{sub.identity.last_name}}</ion-card-title>
+        <ion-card-subtitle *ngIf="sub && sub.retreat"> à la retraite {{sub.retreat.name}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button fill="outline" slot="end">Paiement</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      <form>
+        <ion-card class="ion-margin-vertical">
+          <ion-card-header>
+            <ion-card-title>Dossier du participant</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+                <ion-label>Addresse</ion-label>
+                <ion-item>
+                  <ion-input [placeholder]="sub && sub.identity ? sub.identity.address : null"></ion-input>
+                </ion-item>
+                <ion-label>Code postal</ion-label>
+                <ion-item>
+                  <ion-input [placeholder]="sub && sub.identity ? sub.identity.zipcode : null"></ion-input>
+                </ion-item>
+                <ion-label>Ville</ion-label>
+                <ion-item>
+                  <ion-input [placeholder]="sub && sub.identity ? sub.identity.city : null"></ion-input>
+                </ion-item>
+                <ion-label>Pays</ion-label>
+                <ion-item>
+                  <ion-input [placeholder]="sub && sub.identity ? sub.identity.country : null"></ion-input>
+                </ion-item>
+                <ion-label>Numéro de téléphone</ion-label>
+                <ion-item>
+                  <ion-input [placeholder]="sub && sub.identity ? sub.identity.phone : null"></ion-input>
+                </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin-vertical">
+          <ion-card-header>
+            <ion-card-title>En cas d'urgence</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-label>Personne à contacter</ion-label>
+              <ion-item>
+                <ion-input [placeholder]="sub && sub.identity ? sub.identity.emergency_person_to_call : null"></ion-input>
+              </ion-item>
+              <ion-label>Médecin traitant</ion-label>
+              <ion-item>
+                <ion-input [placeholder]="sub && sub.identity ? sub.identity.emergency_medical_care : null"></ion-input>
+              </ion-item>
+              <ion-label position="floating">Allergies</ion-label>
+              <ion-item>
+                <ion-textarea [placeholder]="sub && sub.identity ? sub.identity.emergency_known_allergy : null"></ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin-vertical">
+          <ion-card-header>
+            <ion-card-title>Note concernant la participation</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label position="floating">Note</ion-label>
+            <ion-item>
+              <ion-textarea [placeholder]="sub && sub.note ? sub.note.content : null"></ion-textarea>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <div class="ion-padding">
+          <ion-button expand="block" type="submit" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">Modifier</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

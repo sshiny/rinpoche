@@ -37,7 +37,13 @@
                   <ion-card-subtitle>{{sub.address}}, {{sub.city}}, {{sub.country}}</ion-card-subtitle>
                 </ion-card-header>
                 <ion-button routerLink="{{sub.id}}" routerDirection="forward"  fill="outline" slot="end">
-                  >
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+                <ion-button routerLink="{{sub.id}}" routerDirection="forward"  fill="outline" slot="end">
+                  <ion-icon name="cash"></ion-icon>
+                </ion-button>
+                <ion-button routerLink="{{sub.id}}" routerDirection="forward"  fill="outline" slot="end">
+                  <ion-icon name="arrow-round-forward"></ion-icon>
                 </ion-button>
               </ion-item>
             </ion-card>

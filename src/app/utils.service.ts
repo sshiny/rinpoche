@@ -10,8 +10,8 @@ export class UtilsService {
 
   redirectToPinPage(platform: Platform) {
     platform.ready().then(() => {
-      let isConnected = sessionStorage.connected;
-      if (!isConnected || !JSON.parse(isConnected)) {
+      let isConnected = sessionStorage.token;
+      if (!isConnected) {
         window.location.href = "users";
       }
     });

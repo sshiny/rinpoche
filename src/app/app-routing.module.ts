@@ -17,9 +17,10 @@ const routes: Routes = [
   },
   { path: 'pin', loadChildren: './pin/pin.module#PinPageModule' },
   { path: 'retirements', loadChildren: './retirements/retirements.module#RetirementsPageModule' },
-  { path: 'retirements/:id', loadChildren: './retirement/retirement.module#RetirementPageModule' },
-  { path: 'retirements/:id/:subscription', loadChildren: './subscription/subscription.module#SubscriptionPageModule' },
+  { path: 'retirements/:ret', loadChildren: './retirement/retirement.module#RetirementPageModule' },
+  { path: 'retirements/:ret/:id', loadChildren: './subscription/subscription.module#SubscriptionPageModule' },
   { path: 'users', loadChildren: './users/users.module#UsersPageModule' },
+  { path: 'modify', loadChildren: './modify/modify.module#ModifyPageModule' },
 ];
 
 @NgModule({
