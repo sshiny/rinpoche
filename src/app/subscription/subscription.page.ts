@@ -19,9 +19,17 @@ export class SubscriptionPage implements OnInit {
     this.utils.redirectToPinPage(this.plt);
     let ret = this.activatedRoute.snapshot.paramMap.get('ret');
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (sessionStorage.retreat && sessionStorage.identity && sessionStorage.subscription) {
+      if (sessionStorage.retreat == ret && sessionStorage.identity == id) {
+        this.sub = JSON.parse(sessionStorage.subscription);
+        return;
+      }
+    }
     this.api.subscription(sessionStorage.token, ret, id).subscribe((data) => {
-      console.log(data.body);
       this.sub = data.body;
+      sessionStorage.setItem("retreat", ret);
+      sessionStorage.setItem("identity", id);
+      sessionStorage.setItem("subscription", JSON.stringify(data.body));
     });
   }
 

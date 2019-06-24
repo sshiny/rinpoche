@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'retirements', loadChildren: './retirements/retirements.module#RetirementsPageModule' },
   { path: 'retirements/:ret', loadChildren: './retirement/retirement.module#RetirementPageModule' },
   { path: 'retirements/:ret/:id', loadChildren: './subscription/subscription.module#SubscriptionPageModule' },
+  { path: 'retirements/:ret/:id/modify', loadChildren: './modify/modify.module#ModifyPageModule' },
   { path: 'users', loadChildren: './users/users.module#UsersPageModule' },
-  { path: 'modify', loadChildren: './modify/modify.module#ModifyPageModule' },
 ];
 
 @NgModule({

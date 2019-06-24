@@ -19,7 +19,6 @@ export class RetirementPage implements OnInit {
     this.utils.redirectToPinPage(this.plt);
     let ret = this.activatedRoute.snapshot.paramMap.get('ret');
     this.api.retreat(sessionStorage.token, ret).subscribe((data) => {
-      console.log(data.body);
       this.ret = data.body;
     });
   }
