@@ -29,3 +29,25 @@
         }
     }
 }
+
+.app-sub {
+    .paid {
+        --background-activated: #28e070;
+        --background-focused: #28e070;
+        --color: #0ec254;
+        --border-color: #10dc60;
+        --ripple-color: #28e070;
+        --color-activated: #28e070;
+        --color-focused: #28e070;
+    }
+    
+    .unpaid {
+        --background-activated: #f25454;
+        --background-focused: #f25454;
+        --color: #d33939;
+        --border-color: #f04141;
+        --ripple-color: #f25454;
+        --color-activated: #f25454;
+        --color-focused: #f25454;
+    }
+}

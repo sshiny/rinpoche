@@ -75,4 +75,19 @@ export class APIService {
     });
   }
 
+  modify(token: string, ret:string, id: string, formData: Object) {
+    return this.http.post(APIService.API_END_POINT + "modify", JSON.stringify({
+      retreat_id: ret,
+      identity_id: id,
+      form_data: formData
+    }), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
 }

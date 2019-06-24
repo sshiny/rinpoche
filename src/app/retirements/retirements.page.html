@@ -17,7 +17,9 @@
           <ion-card-title>{{ret.name}}</ion-card-title>
           <ion-card-subtitle>{{ret.first_day}} - {{ret.last_day}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-button routerLink="{{ret.id}}" routerDirection="forward" fill="outline" slot="end">Infos</ion-button>
+      <ion-button routerLink="{{ret.id}}" routerDirection="forward" fill="outline" slot="end">
+        <ion-icon name="information-circle"></ion-icon>
+      </ion-button>
     </ion-item>
 
     <ion-card-content>
