@@ -72,8 +72,7 @@
         </ion-card-header>
         <ion-card-content *ngFor="let note of sub.notes">
           <ion-item>
-            <ion-label text-wrap position="floating">{{note.title}}</ion-label>
-            <ion-textarea readonly>{{note.content}}</ion-textarea>
+            <ion-label text-wrap>{{note.title}} : {{note.content}}</ion-label>
           </ion-item>
         </ion-card-content>
       </ion-card>
