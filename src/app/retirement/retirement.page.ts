@@ -25,13 +25,4 @@ export class RetirementPage implements OnInit {
     });
   }
 
-  private searchHandler = (value: string) => {
-    this.api.search(sessionStorage.token, "retirement", {search: value}).subscribe((data) => {
-      console.log(data, data.body);
-      if (Array.isArray(data.body)) {
-        this.ret = data.body;
-      }
-    });
-  }
-
 }

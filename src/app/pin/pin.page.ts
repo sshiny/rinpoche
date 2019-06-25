@@ -45,7 +45,7 @@ export class PinPage implements OnInit {
     this.checkPIN()
       .then(() => {
         sessionStorage.setItem("connected", "true");
-        window.location.href = "home";
+        window.location.href = "retirements";
       })
       .catch(() => {
         this.showAlert("Le code PIN saisi est incorrect...");
