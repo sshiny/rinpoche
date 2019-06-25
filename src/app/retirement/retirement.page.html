@@ -7,28 +7,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="ret; else notFound">
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle *ngIf="ret">{{ ret.first_day }} - {{ ret.last_day }}</ion-card-subtitle>
-      <ion-card-title *ngIf="ret">{{ ret.name }}</ion-card-title>
+      <ion-card-subtitle>{{ ret.first_day }} - {{ ret.last_day }}</ion-card-subtitle>
+      <ion-card-title>{{ ret.name }}</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content *ngIf="ret">
+    <ion-card-content>
       {{ ret.description }}
     </ion-card-content>
   </ion-card>
 
   <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>
-          <ion-searchbar placeholder="Rechercher"></ion-searchbar>
-        </ion-card-subtitle>
+        <!-- <ion-card-subtitle>
+          <ion-searchbar placeholder="Rechercher" (input)="searchHandler($event.target.value);"></ion-searchbar>
+        </ion-card-subtitle> -->
         <ion-card-title>Liste des participants</ion-card-title>
       </ion-card-header>
   
       <ion-card-content>
-          <div *ngIf="ret && ret.subscriptions; then thenBlock else elseBlock"></div>
+          <div *ngIf="ret.subscriptions; then thenBlock else elseBlock"></div>
           <ng-template #thenBlock>            
             <ion-card *ngFor="let sub of ret.subscriptions;">
               <ion-item>
@@ -41,7 +41,7 @@
                 <ion-button routerLink="{{sub.id}}/modify" routerDirection="forward"  fill="outline" slot="end">
                   <ion-icon name="create"></ion-icon>
                 </ion-button>
-                <ion-button routerLink="{{sub.id}}" routerDirection="forward"  fill="outline" slot="end">
+                <ion-button routerLink="{{sub.id}}/payment" routerDirection="forward"  fill="outline" slot="end">
                   <ion-icon name="wallet"></ion-icon>
                 </ion-button>
                 <ion-button routerLink="{{sub.id}}" routerDirection="forward"  fill="outline" slot="end">
@@ -54,3 +54,10 @@
       </ion-card-content>
   </ion-card>
 </ion-content>
+<ng-template #notFound>
+  <ion-content>
+    <ion-card>
+        <ion-card-content>La retraite n'a pas été trouvée...</ion-card-content>
+    </ion-card>
+  </ion-content>
+</ng-template>

@@ -12,14 +12,25 @@ import { APIService } from '../api.service';
 export class RetirementPage implements OnInit {
 
   private ret: Object;
+  private id: string;
   
-  constructor(private activatedRoute: ActivatedRoute, public plt: Platform, public utils: UtilsService, public api: APIService) { }
+  constructor(private activatedRoute: ActivatedRoute, public plt: Platform, public utils: UtilsService, public api: APIService) {
+    this.id = this.activatedRoute.snapshot.paramMap.get('ret');
+  }
 
   ngOnInit() {
     this.utils.redirectToPinPage(this.plt);
-    let ret = this.activatedRoute.snapshot.paramMap.get('ret');
-    this.api.retreat(sessionStorage.token, ret).subscribe((data) => {
+    this.api.retreat(sessionStorage.token, this.id).subscribe((data) => {
       this.ret = data.body;
+    });
+  }
+
+  private searchHandler = (value: string) => {
+    this.api.search(sessionStorage.token, "retirement", {search: value, retreat: this.id}).subscribe((data) => {
+      console.log(data, data.body);
+      if (Array.isArray(data.body)) {
+        this.ret = data.body;
+      }
     });
   }
 

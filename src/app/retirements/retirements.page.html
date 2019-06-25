@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="retirements; else elseBlock">
   <ion-card-subtitle>
-    <ion-searchbar placeholder="Rechercher"></ion-searchbar>
+    <ion-searchbar placeholder="Rechercher" (input)="searchHandler($event.target.value);"></ion-searchbar>
   </ion-card-subtitle>
   <ion-card *ngFor="let ret of retirements;">
     <ion-item>
@@ -29,3 +29,11 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ng-template #elseBlock>
+    <ion-content>
+      <ion-card>
+          <ion-card-content>Aucune retraite disponible...</ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-template>

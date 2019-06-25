@@ -90,4 +90,54 @@ export class APIService {
     });
   }
 
+  search(token: string, origin: string, data: Object) {
+    return this.http.post(APIService.API_END_POINT + "search", JSON.stringify({
+      data: data,
+      origin: origin
+    }), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
+  payments(token: string, ret:string, id: string) {
+    return this.http.post(APIService.API_END_POINT + "payments", JSON.stringify({
+      retreat_id: ret,
+      identity_id: id
+    }), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
+  getUserId(token: string) {
+    return this.http.get(APIService.API_END_POINT + "user", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
+  newPayment(token: string, pay: Object) {
+    return this.http.post(APIService.API_END_POINT + "new_payment", JSON.stringify(pay), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
 }

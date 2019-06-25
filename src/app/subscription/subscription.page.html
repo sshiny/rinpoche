@@ -14,7 +14,7 @@
         <ion-card-title>Participation de {{sub.identity.first_name}} {{sub.identity.last_name}}</ion-card-title>
         <ion-card-subtitle> à la retraite {{sub.retreat.name}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-button [class]="(sub.payments) ? 'paid' : 'unpaid'" fill="outline" slot="end">
+      <ion-button routerLink="payment" routerDirection="forward" [class]="(sub.payments) ? 'paid' : 'unpaid'" fill="outline" slot="end">
         <ion-icon name="checkmark" *ngIf="sub.payments; else unpaid"></ion-icon>
         <ng-template #unpaid><ion-icon name="close"></ion-icon></ng-template>
         Paiement

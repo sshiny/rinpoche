@@ -27,4 +27,12 @@ export class RetirementsPage implements OnInit {
     });
   }
 
+  private searchHandler = (value: string) => {
+    this.api.search(sessionStorage.token, "retirements", {search: value}).subscribe((data) => {
+      if (Array.isArray(data.body)) {
+        this.retirements = data.body;
+      }
+    });
+  }
+
 }

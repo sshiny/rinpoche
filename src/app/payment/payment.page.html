@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Paiements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="payments;">
+    <ion-card-header>
+      <ion-card-title>Liste des paiements effectués</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card *ngFor="let pay of payments; index as i;">
+        <ion-card-header>
+          <ion-card-title>Paiement n°{{i + 1}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Type de paiement : {{pay.type}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Statut du paiement : {{pay.state}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Montant : {{pay.amount}} €</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Commentaire : {{pay.comment}}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>Nouveau paiement</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-list>
+          <ion-item>
+            <ion-label>Type de paiement :</ion-label>
+            <ion-select okText="Valider" cancelText="Annuler" [(ngModel)]="new.type">
+              <ion-select-option *ngFor="let item of types | keyvalue" value="{{item.key}}">{{item.value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item>
+            <ion-label>Statut du paiement :</ion-label>
+            <ion-select okText="Valider" cancelText="Annuler" [(ngModel)]="new.state">
+              <ion-select-option *ngFor="let item of states | keyvalue" value="{{item.key}}">{{item.value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-item>
+          <ion-label>Montant (en €) :</ion-label>
+          <ion-input type="number" [(ngModel)]="new.amount"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Commentaire :</ion-label>
+          <ion-input [(ngModel)]="new.comment"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="ion-padding">
+        <ion-button expand="block" (click)="handleSaveClick();" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
+          <ion-icon name="create"></ion-icon>
+          Enregistrer
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
