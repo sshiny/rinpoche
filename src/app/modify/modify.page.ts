@@ -40,13 +40,17 @@ export class ModifyPage implements OnInit {
     if (sessionStorage.retreat && sessionStorage.identity && sessionStorage.subscription) {
       if (sessionStorage.retreat == this.ret && sessionStorage.identity == this.id) {
         this.sub = JSON.parse(sessionStorage.subscription);
-        this.setNotes(this.sub['notes']);
+        if (this.sub['notes']) {
+          this.setNotes(this.sub['notes']);
+        }
         return;
       }
     }
     this.api.subscription(sessionStorage.token, this.ret, this.id).subscribe((data) => {
       this.sub = data.body;
-      this.setNotes(this.sub['notes']);
+      if (this.sub['notes']) {
+        this.setNotes(this.sub['notes']);
+      }
       sessionStorage.setItem("retreat", this.ret);
       sessionStorage.setItem("identity", this.id);
       sessionStorage.setItem("subscription", JSON.stringify(data.body));

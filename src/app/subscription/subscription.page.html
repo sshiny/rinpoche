@@ -9,18 +9,25 @@
 
 <ion-content class="app-sub" *ngIf="sub && sub.identity && sub.retreat; else elseBlock">
   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Participation de {{sub.identity.first_name}} {{sub.identity.last_name}}</ion-card-title>
+      <ion-card-subtitle> à la retraite {{sub.retreat.name}}</ion-card-subtitle>
+    </ion-card-header>
     <ion-item>
-      <ion-card-header>
-        <ion-card-title>Participation de {{sub.identity.first_name}} {{sub.identity.last_name}}</ion-card-title>
-        <ion-card-subtitle> à la retraite {{sub.retreat.name}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-button routerLink="payment" routerDirection="forward" [class]="(sub.payments) ? 'paid' : 'unpaid'" fill="outline" slot="end">
+      <ion-button expand="block" routerLink="modify" routerDirection="forward" fill="outline" slot="end"
+        class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
+        <ion-icon name="create"></ion-icon>
+        Modifier
+      </ion-button>
+      <ion-button routerLink="payment" routerDirection="forward" [class]="(sub.payments) ? 'paid' : 'unpaid'"
+        fill="outline" slot="end">
         <ion-icon name="checkmark" *ngIf="sub.payments; else unpaid"></ion-icon>
-        <ng-template #unpaid><ion-icon name="close"></ion-icon></ng-template>
+        <ng-template #unpaid>
+          <ion-icon name="close"></ion-icon>
+        </ng-template>
         Paiement
       </ion-button>
     </ion-item>
-  
     <ion-card-content>
       <ion-card class="ion-margin-vertical">
         <ion-card-header>
@@ -76,13 +83,6 @@
           </ion-item>
         </ion-card-content>
       </ion-card>
-
-      <div class="ion-padding">
-        <ion-button expand="block" routerLink="modify" routerDirection="forward" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
-          <ion-icon name="create"></ion-icon>
-          Modifier
-        </ion-button>
-      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
@@ -90,7 +90,7 @@
 <ng-template #elseBlock>
   <ion-content>
     <ion-card>
-        <ion-card-content>La participation n'a pas été trouvée...</ion-card-content>
+      <ion-card-content>La participation n'a pas été trouvée...</ion-card-content>
     </ion-card>
   </ion-content>
 </ng-template>

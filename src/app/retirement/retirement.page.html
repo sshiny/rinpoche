@@ -20,12 +20,17 @@
   </ion-card>
 
   <ion-card>
+    <ion-item>
       <ion-card-header>
-        <!-- <ion-card-subtitle>
+        <ion-card-subtitle>
           <ion-searchbar placeholder="Rechercher" (input)="searchHandler($event.target.value);"></ion-searchbar>
-        </ion-card-subtitle> -->
+        </ion-card-subtitle>
         <ion-card-title>Liste des participants</ion-card-title>
       </ion-card-header>
+      <ion-button fill="outline" slot="end" routerLink="new" routerDirection="forward" >
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
   
       <ion-card-content>
           <div *ngIf="ret.subscriptions; then thenBlock else elseBlock"></div>

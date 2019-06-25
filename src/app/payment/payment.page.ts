@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { UtilsService } from '../utils.service';
 import { APIService } from '../api.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-payment',
@@ -18,7 +19,7 @@ export class PaymentPage implements OnInit {
   private ret: string;
   private id: string;
 
-  constructor(private activatedRoute: ActivatedRoute, public plt: Platform, public utils: UtilsService, public api: APIService) {
+  constructor(private activatedRoute: ActivatedRoute, public plt: Platform, public utils: UtilsService, public api: APIService, public alertController: AlertController) {
     this.ret = this.activatedRoute.snapshot.paramMap.get('ret');
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.payments = new Array();
@@ -82,9 +83,13 @@ export class PaymentPage implements OnInit {
       let user = await this.api.getUserId(sessionStorage.token).toPromise();
       this.new['user_id'] = user.body['id'];
       this.api.newPayment(sessionStorage.token, this.new).subscribe((data) => {
-        console.log(data.body);
+        location.reload();
       });
     }
+  };
+
+  private handleUpdateClick = (pay) => {
+    console.log(pay);
   };
 
 }

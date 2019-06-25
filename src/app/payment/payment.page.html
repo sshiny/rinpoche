@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Paiements</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,9 +14,15 @@
     </ion-card-header>
     <ion-card-content>
       <ion-card *ngFor="let pay of payments; index as i;">
-        <ion-card-header>
-          <ion-card-title>Paiement n°{{i + 1}}</ion-card-title>
-        </ion-card-header>
+        <ion-item>
+          <ion-card-header>
+            <ion-card-title>Paiement n°{{i + 1}}</ion-card-title>
+          </ion-card-header>
+          <ion-button expand="block" (click)="handleUpdateClick(pay.id);" fill="outline" slot="end" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
+            <ion-icon name="create"></ion-icon>
+            Modifier
+          </ion-button>
+        </ion-item>
         <ion-card-content>
           <ion-list>
             <ion-item>
@@ -34,9 +43,15 @@
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-header>
+    <ion-item>
+      <ion-card-header>
         <ion-card-title>Nouveau paiement</ion-card-title>
-    </ion-card-header>
+      </ion-card-header>
+      <ion-button expand="block" (click)="handleSaveClick();" fill="outline" slot="end" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
+        <ion-icon name="create"></ion-icon>
+        Enregistrer
+      </ion-button>
+    </ion-item>
     <ion-card-content>
       <ion-list>
         <ion-list>
@@ -64,12 +79,6 @@
           <ion-input [(ngModel)]="new.comment"></ion-input>
         </ion-item>
       </ion-list>
-      <div class="ion-padding">
-        <ion-button expand="block" (click)="handleSaveClick();" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
-          <ion-icon name="create"></ion-icon>
-          Enregistrer
-        </ion-button>
-      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'pin', loadChildren: './pin/pin.module#PinPageModule' },
   { path: 'retirements', loadChildren: './retirements/retirements.module#RetirementsPageModule' },
   { path: 'retirements/:ret', loadChildren: './retirement/retirement.module#RetirementPageModule' },
+  { path: 'retirements/:ret/new', loadChildren: './new/new.module#NewPageModule' },
   { path: 'retirements/:ret/:id', loadChildren: './subscription/subscription.module#SubscriptionPageModule' },
   { path: 'retirements/:ret/:id/modify', loadChildren: './modify/modify.module#ModifyPageModule' },
   { path: 'retirements/:ret/:id/payment', loadChildren: './payment/payment.module#PaymentPageModule' },

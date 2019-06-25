@@ -140,4 +140,28 @@ export class APIService {
     });
   }
 
+  saveIdentity(token: string, formData: Object) {
+    return this.http.post(APIService.API_END_POINT + "new_identity", JSON.stringify(formData), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
+  setIdToRetirement(token: string, ret: string, id: string) {
+    return this.http.post(APIService.API_END_POINT + "retreats/" + ret + "/add", JSON.stringify({
+      identity_id: id
+    }), {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      observe: 'response'
+    });
+  }
+
 }

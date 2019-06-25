@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Création d'un nouveau participant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>    
+    <ion-card-content>
+      <ion-card class="ion-margin-vertical">
+        <ion-card-header>
+          <ion-card-title>Dossier du participant</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-label>Prénom</ion-label>
+            <ion-item>
+              <ion-input placeholder="Prénom" [(ngModel)]="formData.first_name"></ion-input>
+            </ion-item>
+            <ion-label>Nom</ion-label>
+            <ion-item>
+              <ion-input placeholder="Nom" [(ngModel)]="formData.last_name"></ion-input>
+            </ion-item>
+            <ion-label>Date de naissance</ion-label>
+            <ion-item>
+              <ion-input placeholder="Date de naissance" [(ngModel)]="formData.birthday"></ion-input>
+            </ion-item>
+            <ion-label>Sexe</ion-label>
+            <ion-item>
+              <ion-input placeholder="Sexe" [(ngModel)]="formData.gender"></ion-input>
+            </ion-item>
+            <ion-label>Adresse</ion-label>
+            <ion-item>
+              <ion-input placeholder="Adresse" [(ngModel)]="formData.address"></ion-input>
+            </ion-item>
+            <ion-label>Code postal</ion-label>
+            <ion-item>
+              <ion-input placeholder="Code postal" [(ngModel)]="formData.zipcode"></ion-input>
+            </ion-item>
+            <ion-label>Ville</ion-label>
+            <ion-item>
+              <ion-input placeholder="Ville" [(ngModel)]="formData.city"></ion-input>
+            </ion-item>
+            <ion-label>Pays</ion-label>
+            <ion-item>
+              <ion-input placeholder="Pays" [(ngModel)]="formData.country"></ion-input>
+            </ion-item>
+            <ion-label>Numéro de téléphone</ion-label>
+            <ion-item>
+              <ion-input placeholder="Numéro de téléphone" [(ngModel)]="formData.phone"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="ion-margin-vertical">
+        <ion-card-header>
+          <ion-card-title>En cas d'urgence</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-label>Personne à contacter</ion-label>
+            <ion-item>
+              <ion-input placeholder="Personne à contacter" [(ngModel)]="formData.emergency_person_to_call"></ion-input>
+            </ion-item>
+            <ion-label>Médecin traitant</ion-label>
+            <ion-item>
+              <ion-input placeholder="Médecin traitant" [(ngModel)]="formData.emergency_medical_care"></ion-input>
+            </ion-item>
+            <ion-label position="floating">Allergies</ion-label>
+            <ion-item>
+              <ion-textarea placeholder="Allergies" [(ngModel)]="formData.emergency_known_allergy"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <div class="ion-padding">
+        <ion-button expand="block" (click)="handleSaveClick();" class="ion-no-margin ios button button-block button-solid ion-activatable ion-focusable hydrated">
+          <ion-icon name="create"></ion-icon>
+          Enregistrer
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
